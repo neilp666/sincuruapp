@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  before_action :set_order_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_order_item, only: [:show, :edit, :destroy]
   before_action :load_order, only: [:create]
 
 
@@ -11,6 +11,7 @@ class OrderItemsController < ApplicationController
   # POST /order_items.json
   def create
        @order_item = @order.order_items.find_or_initialize_by_product_id(params[:product_id])
+       @order_item.quantity += 1
       
     respond_to do |format|
       if @order_item.save
@@ -26,11 +27,15 @@ class OrderItemsController < ApplicationController
   # PATCH/PUT /order_items/1
   # PATCH/PUT /order_items/1.json
   def update
+    @order_item = OrderItem.find(params[:id])
     respond_to do |format|
-      if @order_item.update(order_item_params)
-        format.html { redirect_to @order_item, notice: 'Order item was successfully updated.' }
+      if order_item.params[:quantity].to_i == 0
+        @order_item.destroy
+        format.html { redirect_to @order_item.order, notice: 'Item was deleted from your cart.' }
         format.json { head :no_content }
-      else
+      elsif @order_item.update(order_item_params)
+        format.html { redirect_to @order_item.order, notice: 'Successfully updated the order item.' }
+      else 
         format.html { render action: 'edit' }
         format.json { render json: @order_item.errors, status: :unprocessable_entity }
       end
