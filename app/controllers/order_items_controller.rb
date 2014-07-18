@@ -59,11 +59,12 @@ class OrderItemsController < ApplicationController
     end
 
     def load_order
-        @order = Order.find_or_initialize_by_id(session[:order_id], status: "Unsubmitted")
+        @order = Order.find_or_initialize_by_id(session[:order_id], status: "Unsubmitted", user_id: session[:user_id])
+        
         if @order.new_record?
           @order.save!
           session[:order_id] = @order.id
-      end
+        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
