@@ -1,0 +1,32 @@
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Sincuru Beta", root_path, class: "navbar-brand" %>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div id="account">
+    <% if current_user %>
+      <span>Welcome, <%= current_user.name %></span>
+      <%= link_to "logout", logout_path, id: "login" %>
+      <% else %>
+      <%= link_to "login", login_path, id: "logout" %>
+      <% end %>
+  </div><!--/.nav-collapse -->
+      </div>
+    </div>
+

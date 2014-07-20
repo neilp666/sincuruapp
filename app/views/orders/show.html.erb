@@ -46,7 +46,16 @@
 
 	<% end %>
 
-
+	<tr>
+		<th>Shipping To: </th>
+		<td>
+			<%= f.select :address_id, current_user.addresses.collect{|a| [a.to_s, a.id]} %>
+			<%= link_to 'Add an Address', new_address_path %>
+		</td>
+	<tr>
+		<th>Submit Order: </th>
+		<td><%= f.submit "Submit Order" %></td>
+	</tr>
 </table>
 
 <% end %>

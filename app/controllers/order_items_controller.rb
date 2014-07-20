@@ -29,7 +29,7 @@ class OrderItemsController < ApplicationController
   def update
     @order_item = OrderItem.find(params[:id])
     respond_to do |format|
-      if order_item.params[:quantity].to_i == 0
+      if order_item_params[:quantity].to_i == 0
         @order_item.destroy
         format.html { redirect_to @order_item.order, notice: 'Item was deleted from your cart.' }
         format.json { head :no_content }
@@ -58,14 +58,7 @@ class OrderItemsController < ApplicationController
       @order_item = OrderItem.find(params[:id])
     end
 
-    def load_order
-        @order = Order.find_or_initialize_by_id(session[:order_id], status: "Unsubmitted", user_id: session[:user_id])
-        
-        if @order.new_record?
-          @order.save!
-          session[:order_id] = @order.id
-        end
-    end
+    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_item_params
