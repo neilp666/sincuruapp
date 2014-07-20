@@ -11,29 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :line1 %><br>
-    <%= f.text_field :line1 %>
+  <div class="form-group">
+    <%= f.label :line1 %>
+    <%= f.text_field :line1, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :line2 %><br>
-    <%= f.text_field :line2 %>
+  <div class="form-group">
+    <%= f.label :line2 %>
+    <%= f.text_field :line2, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :county %><br>
-    <%= f.text_field :county %>
+  <div class="form-group">
+    <%= f.label :county %>
+    <%= f.text_field :county, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :postcode %><br>
-    <%= f.text_field :postcode %>
+  <div class="form-group">
+    <%= f.label :postcode %>
+    <%= f.text_field :postcode, class: "form-control" %>
   </div>
-    <%= f.hidden_field :user_id %><br>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+   </div>
+    <%= f.hidden_field :user_id %>
   </div>
 <% end %>
